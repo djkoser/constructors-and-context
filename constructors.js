@@ -16,6 +16,11 @@
 
 // Code here
 
+function CarFactory (make,model) {
+    this.make=make;
+    this.model=model;
+};
+
 ////////// PROBLEM 2 //////////
 
 // Do not edit the code below.
@@ -35,6 +40,8 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+  let bob = new Employee('Bob', 'bob@gmail.com', '01-02-98');
+
   ////////// PROBLEM 3 //////////
   
   // Do not edit the code below.
@@ -58,6 +65,16 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+  function Car(make, model, year) {
+    this.make=make;
+    this.model=model;
+    this.year=year;
+    this.move=0;
+    this.moveCar = function () {
+      return this.move+=10; 
+    };
+  };
+
   ////////// PROBLEM 4 //////////
   
   /*
@@ -77,6 +94,10 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+  Movie.prototype.changeRating = function (rating) {
+    return this.rating = (this.rating+rating)/2;
+  }
+
   ////////// PROBLEM 5 //////////
   
   // Write a constructor function called User. This function should take in 4 parameters called name, age, email, and savedPosts in that order. Name and email will be strings, age will be a number and savedPosts will be an array of objects. These objects will each have 3 properties: id (a number), title (a string), and rating (a number between 1 and 5). These objects are the posts that the user will have saved to their account.
@@ -84,6 +105,17 @@ function Employee(name, email, hireDate) {
   // Once the User constructor function is created, write a prototype method for the User function. Name this method addSavedPost. It should take in three parameters: id (a number), title (a string) and rating (a number). Use these parameters to create a new object and add it to the savedPosts array. Make sure to name the properties the same as described previously (id, title, rating).
   
   // Code here
+  function User (name,age,email,savedPosts) {
+    this.name=name;
+    this.age=age;
+    this.email=email;
+    this.savedPosts=savedPosts;
+  }
+
+  User.prototype.addSavedPost = function (id, title, rating) {
+    let postObj = {id, title, rating};
+    return this.savedPosts.push(postObj); 
+  }
   
   ////////// PROBLEM 6 //////////
   
@@ -92,6 +124,13 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+  User.prototype.removeSavedPost = function (postId) {
+    
+    return this.savedPosts.forEach((el, ind, array) => postId=== el.id ? array.splice(ind,1):null);  
+  }
+
+
+
   ////////// PROBLEM 7 //////////
   
   // You will continue to use the constructor function you created in problem 5.
@@ -99,3 +138,6 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+  User.prototype.changePostRating = function (id, rating) {
+    return this.savedPosts.forEach(el => id === el.id ? el.rating=rating:null); 
+  }
